@@ -1,2 +1,4 @@
 /TiendaMiaAutomatizacion/bin/*
 /TiendaMiaAutomatizacion/obj/*
+/.vs/*
+/packages/*
