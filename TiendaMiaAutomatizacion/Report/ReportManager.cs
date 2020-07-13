@@ -15,6 +15,7 @@ namespace TiendaMiaAutomatizacion.Report
         private static ExtentHtmlReporter htmlReporter;
 
         private static ExtentReports extent;
+        private static string reportPath;
         private static readonly object padlock = new object();
 
         private ReportManager()
@@ -30,7 +31,7 @@ namespace TiendaMiaAutomatizacion.Report
                 {
                     if (extent == null)
                     {
-                        string reportPath = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @".\Report\CreatedReport\TestReport.html";
+                        reportPath = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @".\Report\CreatedReport\TestReport.html";
                         htmlReporter = new ExtentHtmlReporter(reportPath);
                         extent = new ExtentReports();
                         extent.AttachReporter(htmlReporter);
@@ -62,6 +63,11 @@ namespace TiendaMiaAutomatizacion.Report
         public static void FlushReport()
         {
             extent.Flush();
+        }
+
+        public static string GetUrl()
+        {
+            return  reportPath;
         }
     }
 }

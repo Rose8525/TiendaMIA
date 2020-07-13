@@ -7,6 +7,7 @@ using TiendaMiaAutomatizacion.Report;
 namespace TiendaMiaAutomatizacion.Test
 {
     [TestFixture]
+    [Parallelizable(ParallelScope.All)]
     public class Tests : BaseTest
     {
 

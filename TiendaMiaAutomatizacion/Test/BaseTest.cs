@@ -1,7 +1,9 @@
 ﻿using AventStack.ExtentReports;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
 using System.Configuration;
+using TiendaMiaAutomatizacion.MailHandler;
 using TiendaMiaAutomatizacion.Report;
 using TiendaMiaAutomatizacion.WebDriverImplementation;
 
@@ -9,7 +11,8 @@ namespace TiendaMiaAutomatizacion.Test
 {
     public class BaseTest
     {
-        protected IWebDriver webDriver;
+        [ThreadStatic]
+        protected static IWebDriver webDriver;
         private string url = "http://www.tiendamia.com";
         private ExtentReports report;
         protected ExtentTest test;
@@ -24,7 +27,7 @@ namespace TiendaMiaAutomatizacion.Test
         public void SetUp()
         {
             var browser = ConfigurationManager.AppSettings[TestContext.CurrentContext.Test.Name];
-            webDriver = WebDriverFactory.GetDriver(browser);
+            webDriver = WebDriverFactory.GetDriver(browser, ConfigurationManager.AppSettings["SeleniumGridUrl"]);
             test = report.CreateTest(TestContext.CurrentContext.Test.Name);
             webDriver.Navigate().GoToUrl(url);
         }
@@ -32,8 +35,7 @@ namespace TiendaMiaAutomatizacion.Test
         [TearDown]
         public void TearDown()
         {
-            ReportManager.FlushReport();
-            if (webDriver != null)
+             if (webDriver != null)
                 webDriver.Quit();
         }
 
@@ -41,8 +43,14 @@ namespace TiendaMiaAutomatizacion.Test
         public void OneTimeTearDown()
         {
             ReportManager.FlushReport();
-            if (webDriver != null)
-                webDriver.Quit();
+            string subjectMessageResult = "All Test Passed";
+
+            SendMailHandler.Instance.SubjectValue = subjectMessageResult + " " + SendMailHandler.Instance.SubjectValue;
+            SendMailHandler.Instance.SetData(5, 1, ReportManager.GetUrl());
+            SendMailHandler.Instance.SendSummaryReportMail();
+
+            Console.WriteLine("Report: " + ReportManager.GetUrl());
+            
         }
     }
 }

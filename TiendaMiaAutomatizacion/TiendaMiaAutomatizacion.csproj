@@ -172,6 +172,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MailHandler\SendMailHandler.cs" />
     <Compile Include="Page\BasePage.cs" />
     <Compile Include="Page\CartPage.cs" />
     <Compile Include="Page\InitialPage.cs" />
@@ -186,6 +187,8 @@
     <Compile Include="Utils\WebDriverExtensions.cs" />
     <Compile Include="WebDriverImplementation\ChromeDriverCreator.cs" />
     <Compile Include="WebDriverImplementation\FirefoxDriverCreator.cs" />
+    <Compile Include="WebDriverImplementation\RemoteChromeDriverCreator.cs" />
+    <Compile Include="WebDriverImplementation\RemoteFirefoxDriverCreator.cs" />
     <Compile Include="WebDriverImplementation\WebDriverCreator.cs" />
     <Compile Include="WebDriverImplementation\WebDriverFactory.cs" />
   </ItemGroup>

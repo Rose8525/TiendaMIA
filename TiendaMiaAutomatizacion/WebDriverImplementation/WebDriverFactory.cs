@@ -6,7 +6,7 @@ namespace TiendaMiaAutomatizacion.WebDriverImplementation
 {
     public class WebDriverFactory
     {
-        public static IWebDriver GetDriver(String browser)
+        public static IWebDriver GetDriver(string browser, string seleniumGridUrl="")
         {
             switch (browser)
             {
@@ -16,6 +16,12 @@ namespace TiendaMiaAutomatizacion.WebDriverImplementation
                 case "firefox":
                     FirefoxDriverCreator firefoxDriver = new FirefoxDriverCreator();
                     return firefoxDriver.createWebDriver();
+                case "chrome-remote":
+                    RemoteChromeDriverCreator remoteChromeDriver = new RemoteChromeDriverCreator(seleniumGridUrl);
+                    return remoteChromeDriver.createWebDriver();
+                case "firefox-remote":
+                    RemoteFirefoxDriverCreator remoteFirefoxDriver = new RemoteFirefoxDriverCreator(seleniumGridUrl);
+                    return remoteFirefoxDriver.createWebDriver();
                 default:
                     throw new Exception("Browser" + browser + "Not supported");                   
 
