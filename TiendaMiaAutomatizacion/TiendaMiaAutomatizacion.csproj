@@ -198,7 +198,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="..\packages\Chromium.ChromeDriver.2.37\content\chromedriver.exe">
+    <Content Include="..\packages\WebDriver.ChromeDriver.win32.83.0.4103.39\content\chromedriver.exe">
       <Link>chromedriver.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

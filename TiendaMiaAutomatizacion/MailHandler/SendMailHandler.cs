@@ -42,7 +42,7 @@ namespace TiendaMiaAutomatizacion.MailHandler
         {
             EnableSendMails = true;
             Mails[0] = "rosamariaceraosorio@gmail.com";
-            Mails[1] = "belo.quintana@gmail.com";
+            Mails[1] = "alfreql@gmail.com";
             MailAddress = "rosamariaceraosorio@gmail.com";
             Password = "elERRe*516";
             HTMLMail = "";
